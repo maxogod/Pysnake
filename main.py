@@ -35,6 +35,11 @@ class Snake:
         else:
             self.y[0] += directionsy[self.walk_direction]
         self.draw()
+        
+    def increase_length(self):
+        self.length += 1
+        self.x.append(SIZE)
+        self.y.append(SIZE)
 
 
 class Apple:
@@ -46,7 +51,6 @@ class Apple:
     
     def draw(self):
         self.parent_screen.blit(self.apple, (self.x, self.y))
-        pygame.display.flip()
 
 
 class Game:
@@ -69,8 +73,13 @@ class Game:
                     for i in [K_UP, K_DOWN, K_RIGHT, K_LEFT]:
                         if pygame.key.get_pressed()[i] and not game.check_180_degrees(i):
                             self.snake.move(i)
+            if (self.snake.x[0] >= 800 or self.snake.x[0] < 0) or (self.snake.y[0] >= 600 or self.snake.y[0] < 0):
+                running = False
             self.snake.walk()
+            self.apple_collision_check()
             self.apple.draw()
+            self.score()
+            pygame.display.flip()
             time.sleep(.09)
     
     def check_180_degrees(self, key):
@@ -84,7 +93,21 @@ class Game:
         elif key == K_LEFT and self.snake.walk_direction == 'right':
             boolean = True            
         return boolean
-
+    
+    def snake_collosion_check(self):
+        #TODO
+        pass
+    
+    def apple_collision_check(self):
+        if self.snake.x[0] == self.apple.x and self.snake.y[0] == self.apple.y:
+            self.snake.increase_length()
+    
+    def score(self):
+        font = pygame.font.SysFont('arial', 40)
+        score = font.render(f'Score: {self.snake.length}', True, (255, 255, 255))
+        self.screen.blit(score, (650, 550))
+     
+    
 
 if __name__ == '__main__':
     game = Game()
