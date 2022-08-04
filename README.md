@@ -1,5 +1,5 @@
 # Pysnake by maxogod
-(it's a regular snake game done all by myself)
+(it's a regular snake game made all by myself)
 Run main.py to play! Have fun!
 
 You can also convert it into a exe file using auto-py-to-exe.
