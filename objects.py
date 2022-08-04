@@ -85,8 +85,10 @@ class Apple:
     def change_pos(self, snake_x, snake_y):
         new_x = random.randint(0, 18) * SIZE
         new_y = random.randint(0, 13) * SIZE
-        while new_x in snake_x or new_y in snake_y:
+        pos = 0
+        while new_x == snake_x[pos] and new_y == snake_y[pos]:
             new_x = random.randint(0, 18) * SIZE
             new_y = random.randint(0, 13) * SIZE
+            pos += 1
         self.x = new_x
         self.y = new_y

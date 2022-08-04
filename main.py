@@ -14,7 +14,7 @@ class Game:
         pygame.display.set_icon(self.icon)
         self.grass = pygame.image.load("resources/grass.jpg").convert()
         
-        self.snake = objects.Snake(self.screen, 1)
+        self.snake = objects.Snake(self.screen, 40)
         self.snake.draw()
         self.apple = objects.Apple(self.screen)
         self.apple.draw()
