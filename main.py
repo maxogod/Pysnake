@@ -9,6 +9,9 @@ class Game:
         pygame.mixer.init()
         
         self.screen = pygame.display.set_mode((800, 600))
+        pygame.display.set_caption('PYSNAKE by maxogod')
+        self.icon = pygame.image.load('resources/icon.ico').convert()
+        pygame.display.set_icon(self.icon)
         self.grass = pygame.image.load("resources/grass.jpg").convert()
         
         self.snake = objects.Snake(self.screen, 1)
