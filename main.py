@@ -103,7 +103,7 @@ class Game:
     
     def gameover(self, hscore):
         self.dead = pygame.image.load("resources/dead.jpg").convert()
-        font = pygame.font.SysFont('', 40)
+        font = pygame.font.SysFont('', 1)
         
         score = font.render(f'Your score: {self.snake.length}', True, (255, 255, 255))
         hscore_text = font.render(f'Highscore: {hscore}', True, (255, 255, 255))
