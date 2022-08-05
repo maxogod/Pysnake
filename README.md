@@ -5,7 +5,6 @@ Run main.py to play! Have fun!
 You can also convert it into a exe file using auto-py-to-exe.
 Feel free to check out my other repositories, and collaborate if you wish.
 
-/ grass background texture from https://www.freepik.com/author/babysofja /
 ~~~
 Bugs and cool implementations that i don't have the time to fix/make:
 - Apple randomly changes pos, but it can appear on the snake's body.
@@ -14,3 +13,5 @@ Bugs and cool implementations that i don't have the time to fix/make:
 - Choose your snake and background.
 - Easteregg sounds and background changes when the player reaches a certain score.
 - Pause/Resume buttons, and give 3 secs after resume is pressed.
+
+/ grass background texture from https://www.freepik.com/author/babysofja /
