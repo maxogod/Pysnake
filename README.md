@@ -13,6 +13,5 @@ Bugs and cool implementations that i don't have the time to fix/make:
 - Choose your snake and background.
 - Easteregg sounds and background changes when the player reaches a certain score.
 - Pause/Resume buttons, and give 3 secs after resume is pressed.
-
-
+~~~
 / grass background texture from https://www.freepik.com/author/babysofja /
