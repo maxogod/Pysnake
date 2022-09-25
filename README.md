@@ -6,9 +6,11 @@ You can also convert it into an exe file using auto-py-to-exe.
 Feel free to check out my other repositories, and collaborate if you wish to.
 
 
-<img src="resources/title.jpg" width="280px" height="200px">
-<img src="resources/Ingame.png" width="280px" height="200px">
-<img src="resources/dead.jpg" width="280px" height="200px">
+<div align="center">
+  <img src="resources/title.jpg" width="280px" height="200px">
+  <img src="resources/Ingame.png" width="280px" height="200px">
+  <img src="resources/dead.jpg" width="280px" height="200px">
+</div>
 
 
 <a href=""> GamePlay Video </a>
