@@ -2,8 +2,15 @@
 (it's a regular snake game made all by myself)
 Run main.py to play! Have fun!
 
-You can also convert it into a exe file using auto-py-to-exe.
-Feel free to check out my other repositories, and collaborate if you wish.
+You can also convert it into an exe file using auto-py-to-exe.
+Feel free to check out my other repositories, and collaborate if you wish to.
+<img src="resources/title.jpg" width="280px" height="200px">
+<img src="resources/Ingame.png" width="280px" height="200px">
+<img src="resources/dead.jpg" width="280px" height="200px">
+
+
+<a href=""> GamePlay Video </a>
+
 
 ~~~
 Bugs and cool implementations that i don't have the time to fix/make:

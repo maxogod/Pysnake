@@ -1,7 +1,8 @@
 import pygame
 from pygame.locals import *
 import random
-SIZE = (40)
+from constants import *
+
 
 class Snake:
     def __init__(self, parent_screen, length) -> None:
@@ -10,63 +11,65 @@ class Snake:
         self.snake_head = pygame.image.load("resources/snake_head.jpg").convert()
         
         self.length = length
-        self.x = [SIZE] * self.length
-        self.y = [SIZE] * self.length
+        self.x = [BLOCK_SIZE] * self.length
+        self.y = [BLOCK_SIZE] * self.length
         
-        self.walk_direction = 'down'
-	
+        self.walk_direction = K_DOWN
+
     def draw(self):
-        self.parent_screen.blit(self.snake_head, (self.x[0], self.y[0]))
-        for i in range(1, self.length):
-            self.parent_screen.blit(self.snake_block, (self.x[i], self.y[i]))
-        
+        self.parent_screen.blit(self.snake_head, (self.x[HEAD_INDEX], self.y[HEAD_INDEX]))
+        for body_block in range(1, self.length):
+            self.parent_screen.blit(self.snake_block, (self.x[body_block], self.y[body_block]))
+
     def move(self, direction):
-        directions = {K_UP: 'up', K_DOWN: 'down', K_RIGHT: 'right', K_LEFT: 'left'}
-        self.walk_direction = directions[direction]
+        if not self.__check_180_degrees(direction):
+            self.walk_direction = direction
         
     def walk(self):
-        directionsy = {'up': - SIZE, 'down': SIZE}
-        directionsx = {'right': SIZE, 'left': - SIZE}
+        directions_y = {K_UP: - BLOCK_SIZE, K_DOWN: BLOCK_SIZE}
+        directions_x = {K_RIGHT: BLOCK_SIZE, K_LEFT: - BLOCK_SIZE}
         
         for i in range(self.length-1, 0, -1):
             self.x[i] = self.x[i-1]
             self.y[i] = self.y[i-1]
         
-        if self.walk_direction in directionsx:
-            self.x[0] += directionsx[self.walk_direction]
+        if self.walk_direction in directions_x:
+            self.x[HEAD_INDEX] += directions_x[self.walk_direction]
         else:
-            self.y[0] += directionsy[self.walk_direction]
+            self.y[HEAD_INDEX] += directions_y[self.walk_direction]
         self.draw()
         
     def increase_length(self):
         self.length += 1
-        self.x.append(SIZE)
-        self.y.append(SIZE)
+        self.x.append(BLOCK_SIZE)
+        self.y.append(BLOCK_SIZE)
         
     def collision_check(self):
         boolean = True
+        __START_OF_SCREEN = 0
+
         if self.length > 1:
             pos = 1
             while pos < self.length:
-                if self.x[0] == self.x[pos] and self.y[0] == self.y[pos]:
+                if self.x[HEAD_INDEX] == self.x[pos] and self.y[HEAD_INDEX] == self.y[pos]:
                     boolean = False
                 pos += 1
                 
-        if boolean and ((self.x[0] >= 800 or self.x[0] < 0)
-                        or (self.y[0] >= 600 or self.y[0] < 0)):
+        if boolean and ((self.x[HEAD_INDEX] >= SCREEN_HEIGHT or self.x[HEAD_INDEX] < __START_OF_SCREEN)
+                        or (self.y[HEAD_INDEX] >= SCREEN_WIDTH or self.y[HEAD_INDEX] < __START_OF_SCREEN)):
             boolean = False
             
         return boolean
     
-    def check_180_degrees(self, key):
+    def __check_180_degrees(self, key):
         boolean = False
-        if key == K_UP and self.walk_direction == 'down':
+        if key == K_UP and self.walk_direction == K_DOWN:
             boolean = True
-        elif key == K_DOWN and self.walk_direction == 'up':
+        elif key == K_DOWN and self.walk_direction == K_UP:
             boolean = True
-        elif key == K_RIGHT and self.walk_direction == 'left':
+        elif key == K_RIGHT and self.walk_direction == K_LEFT:
             boolean = True
-        elif key == K_LEFT and self.walk_direction == 'right':
+        elif key == K_LEFT and self.walk_direction == K_RIGHT:
             boolean = True            
         return boolean
 
@@ -76,19 +79,24 @@ class Apple:
         self.parent_screen = parent_screen
         self.apple = pygame.image.load("resources/apple.png").convert_alpha()
         
-        self.x = random.randint(0, 18) * SIZE
-        self.y = random.randint(0, 13) * SIZE
+        self.x = tp_to_random_place("x")
+        self.y = tp_to_random_place("y")
     
     def draw(self):
         self.parent_screen.blit(self.apple, (self.x, self.y))
         
     def change_pos(self, snake_x, snake_y):
-        new_x = random.randint(0, 18) * SIZE
-        new_y = random.randint(0, 13) * SIZE
+        new_x = tp_to_random_place("x")
+        new_y = tp_to_random_place("y")
         pos = 0
         while new_x == snake_x[pos] and new_y == snake_y[pos]:
-            new_x = random.randint(0, 18) * SIZE
-            new_y = random.randint(0, 13) * SIZE
+            new_x = tp_to_random_place("x")
+            new_y = tp_to_random_place("y")
             pos += 1
         self.x = new_x
         self.y = new_y
+
+
+def tp_to_random_place(direction):
+    max_factor = {"x": 18, "y": 13}
+    return random.randint(0, max_factor[direction]) * BLOCK_SIZE
