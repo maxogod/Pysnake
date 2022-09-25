@@ -13,9 +13,6 @@ Feel free to check out my other repositories, and collaborate if you wish to.
 </div>
 
 
-<a href=""> GamePlay Video </a>
-
-
 ~~~
 Bugs and cool implementations that i don't have the time to fix/make:
 - Apple randomly changes pos, but it can appear on the snake's body (it shouldn't).
