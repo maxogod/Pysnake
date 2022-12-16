@@ -2,7 +2,11 @@
 (it's a regular snake game made all by myself)
 Run main.py to play! Have fun!
 
-You can also convert it into an exe file using auto-py-to-exe.
+You can also convert it into an exe file using auto-py-to-exe (with the following commands).
+```
+pip install auto-py-to-exe
+auto-py-to-exe (A UI will pop up and from there you can create the exe)
+```
 Feel free to check out my other repositories, and collaborate if you wish to.
 
 
